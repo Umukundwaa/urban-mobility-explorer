@@ -1,0 +1,16 @@
+# raw dataset is too big for GitHub - download it locally instead
+data/raw/
+
+# secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# misc
+node_modules/
+.DS_Store
+*.log
