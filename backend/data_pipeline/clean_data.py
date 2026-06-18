@@ -42,7 +42,7 @@ df["congestion_surcharge"] = df["congestion_surcharge"].fillna(0)
 
 # Save excluded rows to quality log
 excluded_df = pd.concat(excluded_rows)
-excluded_df.to_csv("data/raw/data_quality_log.csv", index=False)
+excluded_df.to_csv("backend/data_pipeline/data_quality_log.csv", index=False)
 print(f"Excluded {len(excluded_df)} bad rows")
 
 # trip duration in minutes
