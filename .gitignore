@@ -8,3 +8,4 @@ node_modules/
 .DS_Store
 *.log
 .idea/
+data/sample/cleaned_trips.csv
