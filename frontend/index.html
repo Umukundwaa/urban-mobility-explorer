@@ -19,7 +19,7 @@
         <div class="brand-sub">Urban mobility patterns · Yellow Cab TLC data</div>
       </div>
     </div>
-    <span class="badge">Mock data · swap for API</span>
+    <span class="badge">Live · Flask API</span>
   </div>
 
   <!-- Filters -->
@@ -28,38 +28,17 @@
       <div class="filter-label">Borough</div>
       <select id="f-borough" onchange="applyFilters()">
         <option value="all">All boroughs</option>
-        <option value="Manhattan">Manhattan</option>
-        <option value="Brooklyn">Brooklyn</option>
-        <option value="Queens">Queens</option>
-        <option value="Bronx">Bronx</option>
-        <option value="Staten Island">Staten Island</option>
+        <!-- Populated dynamically from /api/zones/boroughs -->
       </select>
     </div>
     <div class="filter-group">
-      <div class="filter-label">Day type</div>
-      <select id="f-day" onchange="applyFilters()">
-        <option value="all">All days</option>
-        <option value="weekday">Weekdays</option>
-        <option value="weekend">Weekends</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <div class="filter-label">Hour range</div>
+      <div class="filter-label">Time of day</div>
       <select id="f-hour" onchange="applyFilters()">
-        <option value="all">All hours</option>
-        <option value="morning">Morning (6–11)</option>
-        <option value="afternoon">Afternoon (12–17)</option>
-        <option value="evening">Evening (18–23)</option>
-        <option value="night">Night (0–5)</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <div class="filter-label">Distance</div>
-      <select id="f-dist" onchange="applyFilters()">
-        <option value="all">Any distance</option>
-        <option value="short">Short (&lt;2 mi)</option>
-        <option value="medium">Medium (2–10 mi)</option>
-        <option value="long">Long (&gt;10 mi)</option>
+        <option value="all">All times</option>
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+        <option value="Evening">Evening</option>
+        <option value="Night">Night</option>
       </select>
     </div>
   </div>
@@ -68,63 +47,63 @@
   <div class="stats">
     <div class="stat-card">
       <div class="stat-label">Total trips</div>
-      <div class="stat-val stat-accent" id="s-trips">—</div>
+      <div class="stat-val stat-accent" id="s-trips">…</div>
       <div class="stat-sub">in selection</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Avg fare</div>
-      <div class="stat-val" id="s-fare">—</div>
+      <div class="stat-val" id="s-fare">…</div>
       <div class="stat-sub">per trip</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Avg distance</div>
-      <div class="stat-val" id="s-dist">—</div>
+      <div class="stat-val" id="s-dist">…</div>
       <div class="stat-sub">miles</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Avg duration</div>
-      <div class="stat-val" id="s-dur">—</div>
+      <div class="stat-val" id="s-dur">…</div>
       <div class="stat-sub">minutes</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">Peak hour</div>
-      <div class="stat-val" id="s-peak">—</div>
+      <div class="stat-label">Peak time</div>
+      <div class="stat-val" id="s-peak">…</div>
       <div class="stat-sub">most active</div>
     </div>
   </div>
 
-  <!-- Row 1: Hourly line chart (full width) -->
+  <!-- Row 1: Fare by time of day (full width) -->
   <div class="charts-grid">
     <div class="chart-card full">
-      <div class="chart-title">Hourly demand</div>
-      <div class="chart-sub">Trip volume across 24 hours · by borough</div>
+      <div class="chart-title">Avg fare & trip volume by time of day</div>
+      <div class="chart-sub">Bars = avg fare · Line = trip count</div>
       <div class="legend" id="borough-legend"></div>
       <div class="chart-wrap" style="height:240px">
         <canvas id="hourlyChart"></canvas>
       </div>
     </div>
 
-    <!-- Row 2: Heatmap + Zones -->
+    <!-- Row 2: Heatmap + Top zones -->
     <div class="chart-card">
-      <div class="chart-title">Day × hour heatmap</div>
-      <div class="chart-sub">Trip intensity across the week</div>
+      <div class="chart-title">Borough × time of day heatmap</div>
+      <div class="chart-sub">Trip intensity across boroughs and times</div>
       <div class="heatmap-wrap">
         <div id="heatmap"></div>
       </div>
     </div>
 
     <div class="chart-card">
-      <div class="chart-title">Top pickup zones</div>
-      <div class="chart-sub">Ranked by trip volume · custom selection sort</div>
+      <div class="chart-title">Top pickup boroughs</div>
+      <div class="chart-sub">Ranked by trip volume · custom algorithm</div>
       <div class="zones-list" id="zones-list"></div>
     </div>
   </div>
 
-  <!-- Row 3: Fare + Donut -->
+  <!-- Row 3: Payment types + Borough share -->
   <div class="charts-grid">
     <div class="chart-card">
-      <div class="chart-title">Fare distribution</div>
-      <div class="chart-sub">Trips grouped by fare range ($)</div>
+      <div class="chart-title">Payment types & avg tip</div>
+      <div class="chart-sub">Bars = trip count · Line = avg tip ($)</div>
       <div class="chart-wrap" style="height:210px">
         <canvas id="fareChart"></canvas>
       </div>
