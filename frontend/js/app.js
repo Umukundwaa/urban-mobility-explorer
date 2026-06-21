@@ -1,11 +1,7 @@
-/* ============================================================
-   NYC Taxi Pulse — Dashboard Logic
-   app.js
-   All data comes from the Flask backend API.
-   ============================================================ */
+
 
 /* ---- Base URL — change this to your backend's address ---- */
-const API_BASE = 'https://ideal-telegram-7v4g7vp7977q2r669-5000.app.github.dev';
+const API_BASE = 'http://localhost:5000';
 
 /* ---- Constants ---- */
 const BOROUGH_COLORS = {
@@ -33,9 +29,7 @@ let hourlyInst = null;
 let fareInst   = null;
 let donutInst  = null;
 
-/* ============================================================
-   API CALLS
-   ============================================================ */
+/* API CALLS */
 
 async function fetchTopZones() {
   const res = await fetch(`${API_BASE}/api/insights/top-zones`);
@@ -65,9 +59,7 @@ async function fetchBoroughs() {
   return res.json();
 }
 
-/* ============================================================
-   UTILITY
-   ============================================================ */
+/*UTILITY*/
 
 function fmtNum(n) {
   return Number(n).toLocaleString();
@@ -84,9 +76,7 @@ function setStatLoading() {
   });
 }
 
-/* ============================================================
-   POPULATE BOROUGH DROPDOWN FROM API
-   ============================================================ */
+/* POPULATE BOROUGH DROPDOWN FROM API*/
 
 async function populateBoroughs() {
   try {
@@ -104,10 +94,7 @@ async function populateBoroughs() {
   }
 }
 
-/* ============================================================
-   STATS BAR
-   Derived from avg-fare-by-time + trips filtered data
-   ============================================================ */
+/* STATS BARDerived from avg-fare-by-time + trips filtered data*/
 
 function updateStats(fareByTime, trips) {
   /* Total trips in current filter */
@@ -140,10 +127,9 @@ function updateStats(fareByTime, trips) {
   document.getElementById('s-peak').textContent  = peak.time_of_day || '—';
 }
 
-/* ============================================================
-   HOURLY CHART — avg fare + trip count by time of day
+/* HOURLY CHART — avg fare + trip count by time of day
    Uses /api/insights/avg-fare-by-time
-   ============================================================ */
+  */
 
 function updateHourly(fareByTime) {
   /* Sort into Morning → Afternoon → Evening → Night */
@@ -218,9 +204,7 @@ function updateHourly(fareByTime) {
   });
 }
 
-/* ============================================================
-   HEATMAP — built from trips data (pickup_borough × time_of_day)
-   ============================================================ */
+/* HEATMAP — built from trips data (pickup_borough × time_of_day)*/
 
 function updateHeatmap(trips) {
   const boroughs = [...new Set(trips.map(t => t.pickup_borough).filter(Boolean))].sort();
@@ -259,9 +243,7 @@ function updateHeatmap(trips) {
   document.getElementById('heatmap').innerHTML = html;
 }
 
-/* ============================================================
-   TOP ZONES — from /api/insights/top-zones (borough level)
-   ============================================================ */
+/* TOP ZONES — from /api/insights/top-zones (borough level) */
 
 function updateZones(topZones) {
   if (!topZones.length) {
@@ -281,10 +263,8 @@ function updateZones(topZones) {
   ).join('');
 }
 
-/* ============================================================
-   PAYMENT TYPES CHART — replaces fare distribution
-   Uses /api/insights/payment-types
-   ============================================================ */
+/* PAYMENT TYPES CHART — replaces fare distribution
+   Uses /api/insights/payment-types */
 
 function updateFare(paymentTypes) {
   const labels  = paymentTypes.map(p => PAYMENT_LABELS[String(p.payment_type)] || 'Type ' + p.payment_type);
@@ -348,9 +328,7 @@ function updateFare(paymentTypes) {
   });
 }
 
-/* ============================================================
-   BOROUGH SHARE DONUT — derived from trips data
-   ============================================================ */
+/* BOROUGH SHARE DONUT — derived from trips data */
 
 function updateDonut(trips) {
   /* Count trips per pickup borough */
@@ -392,9 +370,7 @@ function updateDonut(trips) {
   });
 }
 
-/* ============================================================
-   SHOW / HIDE LOADING STATE
-   ============================================================ */
+/* SHOW / HIDE LOADING STATE */
 
 function showError(msg) {
   console.error(msg);
