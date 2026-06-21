@@ -2,13 +2,145 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Urban Mobility Data Explorer</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYC Taxi Pulse — Urban Mobility Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
-  <!-- dashboard layout goes here -->
-  <script src="js/api.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/charts.js"></script>
+<div class="dash">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <div>
+        <div class="brand-title">NYC Taxi Pulse</div>
+        <div class="brand-sub">Urban mobility patterns · Yellow Cab TLC data</div>
+      </div>
+    </div>
+    <span class="badge">Mock data · swap for API</span>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <div class="filter-group">
+      <div class="filter-label">Borough</div>
+      <select id="f-borough" onchange="applyFilters()">
+        <option value="all">All boroughs</option>
+        <option value="Manhattan">Manhattan</option>
+        <option value="Brooklyn">Brooklyn</option>
+        <option value="Queens">Queens</option>
+        <option value="Bronx">Bronx</option>
+        <option value="Staten Island">Staten Island</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Day type</div>
+      <select id="f-day" onchange="applyFilters()">
+        <option value="all">All days</option>
+        <option value="weekday">Weekdays</option>
+        <option value="weekend">Weekends</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Hour range</div>
+      <select id="f-hour" onchange="applyFilters()">
+        <option value="all">All hours</option>
+        <option value="morning">Morning (6–11)</option>
+        <option value="afternoon">Afternoon (12–17)</option>
+        <option value="evening">Evening (18–23)</option>
+        <option value="night">Night (0–5)</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Distance</div>
+      <select id="f-dist" onchange="applyFilters()">
+        <option value="all">Any distance</option>
+        <option value="short">Short (&lt;2 mi)</option>
+        <option value="medium">Medium (2–10 mi)</option>
+        <option value="long">Long (&gt;10 mi)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">Total trips</div>
+      <div class="stat-val stat-accent" id="s-trips">—</div>
+      <div class="stat-sub">in selection</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg fare</div>
+      <div class="stat-val" id="s-fare">—</div>
+      <div class="stat-sub">per trip</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg distance</div>
+      <div class="stat-val" id="s-dist">—</div>
+      <div class="stat-sub">miles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg duration</div>
+      <div class="stat-val" id="s-dur">—</div>
+      <div class="stat-sub">minutes</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Peak hour</div>
+      <div class="stat-val" id="s-peak">—</div>
+      <div class="stat-sub">most active</div>
+    </div>
+  </div>
+
+  <!-- Row 1: Hourly line chart (full width) -->
+  <div class="charts-grid">
+    <div class="chart-card full">
+      <div class="chart-title">Hourly demand</div>
+      <div class="chart-sub">Trip volume across 24 hours · by borough</div>
+      <div class="legend" id="borough-legend"></div>
+      <div class="chart-wrap" style="height:240px">
+        <canvas id="hourlyChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Row 2: Heatmap + Zones -->
+    <div class="chart-card">
+      <div class="chart-title">Day × hour heatmap</div>
+      <div class="chart-sub">Trip intensity across the week</div>
+      <div class="heatmap-wrap">
+        <div id="heatmap"></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Top pickup zones</div>
+      <div class="chart-sub">Ranked by trip volume · custom selection sort</div>
+      <div class="zones-list" id="zones-list"></div>
+    </div>
+  </div>
+
+  <!-- Row 3: Fare + Donut -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Fare distribution</div>
+      <div class="chart-sub">Trips grouped by fare range ($)</div>
+      <div class="chart-wrap" style="height:210px">
+        <canvas id="fareChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Borough share</div>
+      <div class="chart-sub">Trip volume by pickup borough</div>
+      <div class="legend" id="donut-legend"></div>
+      <div class="chart-wrap" style="height:190px">
+        <canvas id="donutChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
