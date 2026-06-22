@@ -297,3 +297,17 @@ This satisfies the assignment's requirement for a custom algorithm implementatio
 
 ## 📄 Documentation
 Full technical report including system architecture, algorithmic analysis, data insights, and reflection is available in `docs/report.pdf`
+
+
+## Database Dump
+
+The database dump file (dump.sql) is not included in this repository due to its large size (1GB).
+You can download it from Google Drive using the link below:
+
+https://drive.google.com/file/d/1t-HCdBhs4MYHVrlV3u68na2LQJLyawlW/view?usp=sharing
+
+To restore the database locally:
+1. Make sure MySQL is running in XAMPP
+2. Open phpMyAdmin and create a database called urban_mobility
+3. Click on urban_mobility, then click the Import tab
+4. Upload the dump.sql file and click Go
