@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 # Load raw data
-df = pd.read_csv("data/raw/yellow_tripdata_2019-01.csv")
+df = pd.read_parquet("data/raw/yellow_tripdata_2019-01.parquet")
 zones = pd.read_csv("data/raw/taxi_zone_lookup.csv")
 
 # Convert timestamps from text to real datetime objects
