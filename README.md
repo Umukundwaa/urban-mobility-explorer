@@ -6,7 +6,7 @@
 ---
 
 ## 🎥 Video Walkthrough
-👉 [Click here to watch our 5-minute demo](PASTE_YOUR_VIDEO_LINK_HERE)
+👉 [Click here to watch our 5-minute demo](https://docs.google.com/spreadsheets/d/10suewgUe0o7ktnC5matnHS6AtNpQ-qgoYFi7ef6Y4uU/edit?usp=sharing)
 
 ---
 
@@ -318,3 +318,9 @@ To restore the database locally:
 The full codebase zip file is available for download via Google Drive:
 
 https://drive.google.com/file/d/1fe9xKF8ZiPZOnXUCqMeGJNArvGA1HW6B/view?usp=sharing
+
+## Team Participation Sheet
+
+https://docs.google.com/spreadsheets/d/10suewgUe0o7ktnC5matnHS6AtNpQ-qgoYFi7ef6Y4uU/edit?usp=sharing
+
+
