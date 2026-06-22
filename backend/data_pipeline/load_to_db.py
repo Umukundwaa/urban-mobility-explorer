@@ -16,7 +16,7 @@ cursor = conn.cursor()
 
 # Load cleaned data
 zones = pd.read_csv("data/raw/taxi_zone_lookup.csv")
-trips = pd.read_csv("data/sample/cleaned_trips.csv")
+trips = pd.read_csv("data/sample/cleaned_trips.csv").head(200000)
 
 # Insert zones first
 print("Inserting zones...")
