@@ -11,7 +11,7 @@
 ---
 
 ## 🏗️ System Architecture
-👉 [Click here to watch our full architecture diagram ](PASTE_YOUR_LINK_HERE)
+👉 [Click here to watch our full architecture diagram ](https://drive.google.com/file/d/11ibrQFI9G2c76QvUy9ejxQvccgbNtEfe/view?usp=sharing)
                                                                                     
 ```
 
