@@ -311,3 +311,10 @@ To restore the database locally:
 2. Open phpMyAdmin and create a database called urban_mobility
 3. Click on urban_mobility, then click the Import tab
 4. Upload the dump.sql file and click Go
+
+
+## Codebase Download
+
+The full codebase zip file is available for download via Google Drive:
+
+https://drive.google.com/file/d/1fe9xKF8ZiPZOnXUCqMeGJNArvGA1HW6B/view?usp=sharing
