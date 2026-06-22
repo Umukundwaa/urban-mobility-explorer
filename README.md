@@ -6,8 +6,7 @@
 ---
 
 ## 🎥 Video Walkthrough
-👉 [Click here to watch our 5-minute demo](https://docs.google.com/spreadsheets/d/10suewgUe0o7ktnC5matnHS6AtNpQ-qgoYFi7ef6Y4uU/edit?usp=sharing)
-
+👉 [Click here to watch our 5-minute demo](https://youtu.be/rnV_QDDyIZg)
 ---
 
 ## 🏗️ System Architecture
