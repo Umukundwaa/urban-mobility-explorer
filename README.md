@@ -15,7 +15,7 @@
 ```
 
 📎 Full architecture diagram: 
-<img width="1811" height="1677" alt="NYC System Architecture drawio" src="https://github.com/user-attachments/assets/f2138fac-f29b-4083-9790-13b923331a3a" />
+<img width="1811" height="1677" alt="NYC System Architecture drawio" src=docs/NYC System Architecture.drawio.png/>
 
 ---
 
