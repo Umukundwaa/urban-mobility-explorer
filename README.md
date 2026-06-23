@@ -14,8 +14,8 @@
                                                                                     
 ```
 
-📎 Full architecture diagram: `docs/architecture_diagram.png`
-
+📎 Full architecture diagram: 
+"\NYC System Architecture.drawio.png"
 ---
 
 ## 📖 What Is This Project?
